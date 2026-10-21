@@ -1,32 +1,53 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>C: Puzzle renderer</title>
   <style>
-    body { font: 1.1rem system-ui, sans-serif; max-width: 34rem; margin: 3rem auto; padding: 0 1rem; }
-    canvas { max-width: 100%; background: #182337; border-radius: .5rem; }
-    button { font: inherit; padding: .5rem 1rem; }
+    body {
+      font: 1.1rem system-ui, sans-serif;
+      max-width: 34rem;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    canvas {
+      max-width: 100%;
+      background: #182337;
+      border-radius: .5rem;
+    }
+
+    button {
+      font: inherit;
+      padding: .5rem 1rem;
+    }
   </style>
 </head>
+
 <body>
   <h1>Three tiles</h1>
   <p id="arrangement" aria-live="polite"></p>
-  <canvas id="board" width="420" height="220" role="img" aria-label="Three colored tiles in one of two arrangements"></canvas>
+  <canvas id="board" width="420" height="220" role="img"
+    aria-label="Three colored tiles in one of two arrangements"></canvas>
   <p><button id="change" type="button">Change arrangement</button></p>
   <script>
     const canvas = document.querySelector("#board");
     const ctx = canvas.getContext("2d");
     const layouts = [
-      { label: "Row", position_color: [
-        { x: 55, y: 80, color: "#e6a23c"}, 
-        { x: 175, y: 80, color: "#6555aa" }, 
-        { x: 295, y: 80, color: "#248a87" }]},
-      { label: "Stack", position_color: 
-      [ {x: 135, y: 55, color: "#e6a23c"}, 
-      { x: 175, y: 80, color: "#6555aa"}, 
-      { x: 215, y: 105, color: "#248a87"}]},
+      {
+        label: "Row", position_color: [
+          { x: 55, y: 80, color: "#e6a23c" },
+          { x: 175, y: 80, color: "#6555aa" },
+          { x: 295, y: 80, color: "#248a87" }]
+      },
+      {
+        label: "Stack", position_color:[
+          { x: 135, y: 55, color: "#e6a23c" },
+          { x: 175, y: 80, color: "#6555aa" },
+          { x: 215, y: 105, color: "#248a87" }]
+      },
     ];
     let layoutIndex = 0;
 
@@ -39,7 +60,7 @@
       const layout = layouts[layoutIndex];
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       document.querySelector("#arrangement").textContent = `Arrangement: ${layout.label}`;
-      layout.position_color.forEach(({x, y, color}) => {
+      layout.position_color.forEach(({ x, y, color }) => {
         createTile(x, y, color);
       });
     }
@@ -51,4 +72,5 @@
     render();
   </script>
 </body>
+
 </html>
