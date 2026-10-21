@@ -28,7 +28,7 @@
     const swatch = document.querySelector("#swatch");
 
     function update() {
-      item = colors[currentColorIndex++ % 3];
+      item = colors[currentColorIndex];
       label.textContent = item.name;
       swatch.style.backgroundColor = item.color;
     }
