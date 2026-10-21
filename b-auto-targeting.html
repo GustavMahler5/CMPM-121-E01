@@ -36,15 +36,18 @@
     const canvas = document.querySelector("#field");
     const ctx = canvas.getContext("2d");
 
+    
     function chooseTarget(enemies) {
       let target = null;
+
+      // Pick the living enemy with the greatest current health
       for (const enemy of enemies) {
         // If health is zero, that enemy is not alive.
         if (enemy.health <= 0)
         {
           continue;
         }
-        // Keep the newest enemy if two have equal health.
+        // Prefer the enemy later in the list if the two are tied in health
         if (!target || target.health <= enemy.health) {
           target = enemy;
         }
