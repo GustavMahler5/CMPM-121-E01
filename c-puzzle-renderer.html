@@ -19,8 +19,14 @@
     const canvas = document.querySelector("#board");
     const ctx = canvas.getContext("2d");
     const layouts = [
-      { label: "Row", position_color: [[55, 80, "#e6a23c"], [175, 80, "#6555aa"], [295, 80, "#248a87"]] },
-      { label: "Stack", position_color: [[135, 55, "#e6a23c"], [175, 80, "#6555aa"], [215, 105, "#248a87"]] },
+      { label: "Row", position_color: [
+        { x: 55, y: 80, color: "#e6a23c"}, 
+        { x: 175, y: 80, color: "#6555aa" }, 
+        { x: 295, y: 80, color: "#248a87" }]},
+      { label: "Stack", position_color: 
+      [ {x: 135, y: 55, color: "#e6a23c"}, 
+      { x: 175, y: 80, color: "#6555aa"}, 
+      { x: 215, y: 105, color: "#248a87"}]},
     ];
     let layoutIndex = 0;
 
@@ -33,7 +39,7 @@
       const layout = layouts[layoutIndex];
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       document.querySelector("#arrangement").textContent = `Arrangement: ${layout.label}`;
-      layout.position_color.forEach(([x, y, color]) => {
+      layout.position_color.forEach(({x, y, color}) => {
         createTile(x, y, color);
       });
     }
